@@ -1,9 +1,9 @@
 CREATE TABLE todolist (
   id SERIAL PRIMARY KEY,
-  title VARCHAR(255),
-  details VARCHAR(10000),
+  title VARCHAR(255) NOT NULL,
+  details TEXT,
   priority INTEGER NOT NULL DEFAULT '1',
-  created_at NOT NULL,
+  created_at TIMESTAMP NOT NULL,
   completed_at TIMESTAMP
 );
 
@@ -15,4 +15,4 @@ INSERT INTO todolist (title, priority, created_at) VALUES ('add to do', 5, NOW()
 SELECT title FROM todolist WHERE completed_at IS NULL;
 SELECT * FROM todolist WHERE priority > 1;
 UPDATE todolist SET completed_at = NOW() WHERE id = 1;
-DELETE FROM todolist WHERE title = 'work';
+DELETE FROM todolist WHERE completed_at IS NOT NULL;
